@@ -38,6 +38,12 @@
     margin: 0 auto;
 }
 
+@media (max-width: 600px){
+.topPhoto{
+    width:clamp(300px, 400px, 400px)
+}
+}
+
 .headerHeading{
     text-align:center;
     font-family: var(--font-monsieur-la-doulaise);

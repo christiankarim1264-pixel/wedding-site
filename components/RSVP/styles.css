@@ -1,8 +1,8 @@
 .RsvpForm {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 480px;
+    gap:28px;
+    max-width: 600px;
     width: min(600px, 100% - 2rem);
     margin: 0 auto;
     padding: 40px 32px;
@@ -12,6 +12,7 @@
     box-shadow: 0 4px 16px rgba(15, 27, 57, 0.1);
     font-family: var(--font-EB-garamond);
     color: #0f1b39;
+    margin-top:30px;
 }
 
 .rsvpTitle {
@@ -20,6 +21,7 @@
     font-size: 56px;
     margin: 0;
     color: #0f1b39;
+    margin-left:-24px;
 }
 
 .rsvpSubtext {
@@ -27,6 +29,41 @@
     margin: 0 0 8px;
     font-size: 16px;
     color: #0f1b39;
+}
+
+.rsvpGuestGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rsvpGuestHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rsvpRemoveGuest {
+    background-color: transparent;
+    border: 1px solid #0f1b39;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: var(--font-EB-garamond);
+    font-size: 14px;
+    color: #0f1b39;
+    cursor: pointer;
+}
+
+.rsvpAddGuest {
+    align-self: center;
+    background-color: transparent;
+    border: 1px dashed #0f1b39;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-family: var(--font-EB-garamond);
+    font-size: 16px;
+    color: #0f1b39;
+    cursor: pointer;
 }
 
 .rsvpField {
