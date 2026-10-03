@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { submitRsvp } from "./actions";
 import "./styles.css";
 
 let nextGuestId = 1;
@@ -17,7 +18,7 @@ export default function RsvpForm() {
   };
 
   return (
-    <form className="RsvpForm" action="/" method="post">
+    <form className="RsvpForm" action={submitRsvp}>
       <h2 className="rsvpTitle">RS&nbsp;&nbsp;&nbsp;VP</h2>
       <p className="rsvpSubtext">
         Kindly respond by December 1st, 2026

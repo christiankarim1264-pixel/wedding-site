@@ -1,11 +1,16 @@
 import Header from "@/components/Header/Header";
 import Carousel from "@/components/Carousel/Carousel";
+import Link from "next/link";
+import Footer from "@/components/Footer/Footer";
+import Banner from "@/components/Banner/Banner";
 
 export default function Home() {
   return (
     <div className="mainContent">
+      <Banner/>
       <Header />
       <Carousel />
+      <Link id='rsvpBtn' className='text-background rounded-4xl px-[100px] py-[30px] mt-[24px] mb-[24px] bg-foreground font-main text-[24px] max-[600px]:px-[60px] max-[600px]:py-[18px] max-[600px]:text-[18px]' href= '/RSVP'>RSVP</Link>
     </div>
   );
 }

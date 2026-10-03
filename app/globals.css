@@ -2,7 +2,7 @@
 
 :root {
   --background: rgb(253, 250, 244);
-  --foreground: #171717;
+  --foreground: #0f1b39;
   /* --color:#0f1b39; */
 }
 
@@ -11,6 +11,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-main: var(--font-EB-garamond);
 }
 
 body {
@@ -28,6 +29,5 @@ body {
   padding-bottom: 100px;
   flex-direction: column;
   max-width:100%;
-  color:#0f1b39;
+  color:var(--foreground);
 }
-

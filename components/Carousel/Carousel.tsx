@@ -1,9 +1,9 @@
 import "./styles.css";
 
-const images = ['/pictures/DSC01980.JPEG','/pictures/DSC02075.JPEG','/pictures/DSC02001.JPEG','/pictures/DSC02093.JPEG'];
+const images = ['/pictures/DSC01980.JPEG','/pictures/DSC02001.JPEG','/pictures/DSC01982.JPEG','/pictures/DSC02075.JPEG','/pictures/DSC02040.JPEG','/pictures/DSC02136.JPG','/pictures/DSC02093.JPEG','/pictures/DSC02035.JPEG','/pictures/DSC02358.JPEG','/pictures/DSC02455.JPEG','/pictures/DSC01996.JPEG'];
 
 export default function Carousel() {
-    const slides = [...images, ...images, ...images];
+    const slides = [...images, ...images];
 
     return (
         <div className="carousel">

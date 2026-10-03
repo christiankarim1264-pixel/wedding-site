@@ -1,0 +1,30 @@
+.thankYouContent {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 32px;
+    text-align: center;
+}
+
+.thankYouHeading {
+    font-family: var(--font-monsieur-la-doulaise);
+    font-size: 72px;
+    color: #0f1b39;
+}
+
+@media (max-width: 600px){
+    .thankYouHeading {
+        font-size: 48px;
+    }
+}
+
+.thankYouText {
+    font-family: var(--font-EB-garamond);
+    font-size: 24px;
+    color: #0f1b39;
+}
+
+@media (max-width: 600px){
+    .thankYouText {
+        font-size: 20px;
+    }
+}
