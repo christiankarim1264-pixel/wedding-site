@@ -1,0 +1,177 @@
+.aboutSection{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:min(600px, 100% - 2rem);
+    margin:30px auto 0;
+    font-family:var(--font-EB-garamond);
+    color:var(--foreground);
+}
+
+.aboutHeading{
+    font-family:var(--font-monsieur-la-doulaise);
+    font-size:56px;
+    text-align:center;
+    margin:0;
+}
+
+@media (max-width: 600px){
+    .aboutHeading{
+        font-size:44px;
+    }
+}
+
+.aboutIntro{
+    text-align:center;
+    font-size:18px;
+    margin:0 0 24px;
+}
+
+.venueCards{
+    width:100%;
+    outline:none;
+}
+
+.venueCards:focus-visible .venueViewport{
+    outline:2px solid var(--foreground);
+    outline-offset:3px;
+}
+
+.venueViewport{
+    overflow:hidden;
+    border:1px solid var(--foreground);
+    border-radius:12px;
+    background-color:var(--background);
+    box-shadow:0 4px 16px rgba(15, 27, 57, 0.1);
+}
+
+.venueTrack{
+    display:flex;
+    transition:transform 0.5s ease;
+}
+
+.venueCard{
+    flex:0 0 100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.venueImage{
+    position:relative;
+    width:100%;
+    aspect-ratio:3 / 2;
+    background-color:rgba(15, 27, 57, 0.06);
+    border-bottom:1px solid var(--foreground);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.venueImage img{
+    object-fit:cover;
+}
+
+.venueImageSlide{ opacity:0; transition:opacity 0.4s ease; }
+.venueImageSlide.active{ opacity:1; }
+
+.venueImageArrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:1;
+    width:36px; height:36px; padding:0;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    background-color:rgba(255, 255, 255, 0.75);
+    color:var(--foreground); cursor:pointer;
+    transition:background-color 0.3s ease;
+}
+.venueImageArrow:hover{ background-color:rgba(255, 255, 255, 0.95); }
+.venueImageArrow.left{ left:10px; }
+.venueImageArrow.right{ right:10px; }
+.venueImageArrow svg{ width:18px; height:18px; }
+
+.venueImagePlaceholder{
+    font-style:italic;
+    font-size:18px;
+    opacity:0.6;
+}
+
+.venueBody{
+    padding:24px 32px 32px;
+    text-align:center;
+}
+
+@media (max-width: 600px){
+    .venueBody{
+        padding:20px 20px 24px;
+    }
+}
+
+.venueTitle{
+    font-size:30px;
+    margin:0;
+}
+
+.venueSubtitle{
+    font-size:16px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin:4px 0 16px;
+    opacity:0.75;
+}
+
+.venueDescription{
+    font-size:18px;
+    line-height:1.6;
+    margin:0;
+}
+
+.venueControls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    margin-top:20px;
+}
+
+.venueNavBtn{
+    width:44px;
+    height:44px;
+    border:1px solid var(--foreground);
+    border-radius:50%;
+    background-color:transparent;
+    color:var(--foreground);
+    font-size:20px;
+    cursor:pointer;
+    transition:background-color 0.3s ease, color 0.3s ease;
+}
+
+.venueNavBtn:hover{
+    background-color:var(--foreground);
+    color:var(--background);
+}
+
+.venueDots{
+    display:flex;
+    gap:10px;
+}
+
+.venueDot{
+    width:10px;
+    height:10px;
+    padding:0;
+    border:1px solid var(--foreground);
+    border-radius:50%;
+    background-color:transparent;
+    cursor:pointer;
+    transition:background-color 0.3s ease;
+}
+
+.venueDot.active{
+    background-color:var(--foreground);
+}
+
+.venueCounter{
+    text-align:center;
+    font-size:14px;
+    margin:10px 0 0;
+    opacity:0.7;
+}

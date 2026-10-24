@@ -15,7 +15,7 @@ export default function Header(){
             <nav className="navLinks">
             <Link className='navBtn' href ='/'>Home</Link>
             <Link className='navBtn' href= '/RSVP'>RSVP</Link>
-            <Link className='navBtn' href='/registry'>Registry</Link>
+            <Link className='navBtn' href='https://www.amazon.com/wedding/share/christianandraakel' target='_blank' rel='noopener noreferrer'>Amazon Registry</Link>
             <Link className='navBtn' href='/About'>About the Venue</Link>
             </nav>
             {/* <img className="invitationPhoto" src="pictures/sample-invitation.jpg"/> */}

@@ -17,7 +17,7 @@ export default function Carousel() {
                         width={800}
                         height={500}
                         sizes="500px"
-                        priority={index === 0}
+                        loading="eager"
                         className="carouselSlide"
                     />
                 ))}

@@ -10,7 +10,7 @@ export default function Home() {
       <Banner/>
       <Header />
       <Carousel />
-      <Link id='rsvpBtn' className='text-background rounded-4xl px-[100px] py-[30px] mt-[24px] mb-[24px] bg-foreground font-main text-[24px] max-[600px]:px-[60px] max-[600px]:py-[18px] max-[600px]:text-[18px]' href= '/RSVP'>RSVP</Link>
+      {/* <Link id='rsvpBtn' className='text-background rounded-4xl px-[100px] py-[30px] mt-[24px] mb-[24px] bg-foreground font-main text-[24px] max-[600px]:px-[60px] max-[600px]:py-[18px] max-[600px]:text-[18px] hover:bg-background hover:text-foreground hover:border-foreground hover:border-2 transition-colors duration-300' href= '/RSVP'>RSVP</Link> */}
     </div>
   );
 }
