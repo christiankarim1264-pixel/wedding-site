@@ -80,7 +80,9 @@ export default function VenueCards() {
           onClick={prev}
           aria-label="Previous card"
         >
-          &larr;
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M19 12H5M11 6l-6 6 6 6" />
+          </svg>
         </button>
         <div className="venueDots">
           {venueSections.map((section, index) => (
@@ -94,7 +96,9 @@ export default function VenueCards() {
           ))}
         </div>
         <button className="venueNavBtn" onClick={next} aria-label="Next card">
-          &rarr;
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
         </button>
       </div>
       <p className="venueCounter">
