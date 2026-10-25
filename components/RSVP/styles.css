@@ -5,9 +5,11 @@
     max-width: 600px;
     width: min(600px, 100% - 2rem);
     margin: 0 auto;
-    /* Frame scale: 0.6 at the full 600px card, shrinking with the card on phones. */
-    --frame-scale: min(0.6px, (100vw - 2rem) / 1000);
-    padding: calc(133 * var(--frame-scale)) calc(93 * var(--frame-scale));
+    /* Frame scale: the 740px-wide frame image always spans exactly the card's width,
+       so its top and bottom ornaments are never stretched sideways. */
+    --frame-scale: calc(min(600px, 100vw - 2rem) / 740);
+    /* Extra bottom padding keeps the radio options clear of the bottom corner flourishes. */
+    padding: calc(240 * var(--frame-scale)) calc(115 * var(--frame-scale)) calc(190 * var(--frame-scale));
     background-color: var(--background);
     font-family: var(--font-EB-garamond);
     color: #0f1b39;
@@ -15,26 +17,28 @@
     position: relative;
 }
 
-/* Decorative frame drawn over the card. border-image keeps the corner flourishes at their true
-   shape (sliced at 170px / 215px of the source image) and repeats the side vines instead of
-   stretching them, so the frame never looks squashed however tall or narrow the form gets. */
+/* Decorative frame drawn over the card. border-image slices the source image 290px from the
+   top/bottom (below the corner flourishes) and 100px from the sides (just past the side lines).
+   Only the plain side lines stretch as the form grows taller; the corners and the top/bottom
+   ornaments always keep their true shape. */
 .RsvpForm::before {
     content: "";
     position: absolute;
     inset: 0;
     border-style: solid;
-    border-width: calc(170 * var(--frame-scale)) calc(215 * var(--frame-scale));
-    border-image: url("/pictures/rsvp-border2-transparent.png") 170 215 / calc(170 * var(--frame-scale)) calc(215 * var(--frame-scale)) stretch round;
+    border-width: calc(290 * var(--frame-scale)) calc(100 * var(--frame-scale));
+    border-image: url("/pictures/rsvp-border-3-transparent.png") 290 100 / calc(290 * var(--frame-scale)) calc(100 * var(--frame-scale)) stretch;
     pointer-events: none;
 }
 
 .rsvpTitle {
     text-align: center;
     font-family: var(--font-monsieur-la-doulaise);
-    font-size: clamp(40px, 12vw, 56px);
+    /* Scales with the frame (capped at 56px on the full-size card) and sits below the corner flourishes. */
+    font-size: min(56px, calc(86 * var(--frame-scale)));
     margin: 0;
     color: #0f1b39;
-    margin-left:-24px;
+    margin-left: calc(-30 * var(--frame-scale));
 }
 
 .rsvpSubtext {
