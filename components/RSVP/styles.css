@@ -27,7 +27,7 @@
     inset: 0;
     border-style: solid;
     border-width: calc(290 * var(--frame-scale)) calc(100 * var(--frame-scale));
-    border-image: url("/pictures/rsvp-border-3-transparent.png") 290 100 / calc(290 * var(--frame-scale)) calc(100 * var(--frame-scale)) stretch;
+    border-image: url("/pictures/rsvp-border-3-navy.png") 290 100 / calc(290 * var(--frame-scale)) calc(100 * var(--frame-scale)) stretch;
     pointer-events: none;
 }
 
