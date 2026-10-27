@@ -42,3 +42,8 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# AI coding tool files
+/.agents/
+/.claude/
+/skills-lock.json
