@@ -30,4 +30,5 @@ body {
   flex-direction: column;
   max-width:100%;
   color:var(--foreground);
+  width: 100%;
 }

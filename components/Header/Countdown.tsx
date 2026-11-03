@@ -27,7 +27,7 @@ export default function Countdown(){
     }
 
     return(
-        <p className='text-center font-[family-name:var(--font-EB-garamond)] italic text-[#0f1b39] text-[20px] sm:text-[48px] mt-2 min-h-[1.5em]'>
+        <p className='text-center font-[family-name:var(--font-EB-garamond)] italic text-[#0f1b39] text-[20px] sm:text-[36px] my-8 max-sm:my-4 min-h-[1.5em]'>
             {message}
         </p>
     );

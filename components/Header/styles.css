@@ -36,7 +36,7 @@
 
 .topPhoto{
     width:100%;
-    max-width: 500px;
+    max-width: 350px;
     display:block;
     margin: 0 auto;
 }
@@ -66,11 +66,13 @@
     font-family: var(--font-EB-garamond);
     text-align: center;
     font-size:24px;
+    padding-bottom:12px;
 }
 
 @media (max-width: 600px){
     .mainText{
         font-size:13px;
+        padding-bottom:8px;
     }
 }
 
