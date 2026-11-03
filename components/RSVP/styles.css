@@ -13,16 +13,14 @@
     background-color: var(--background);
     font-family: var(--font-EB-garamond);
     color: #0f1b39;
-
     position: relative;
 }
-
-
 
 /* Decorative frame drawn over the card. border-image slices the source image 290px from the
    top/bottom (below the corner flourishes) and 100px from the sides (just past the side lines).
    Only the plain side lines stretch as the form grows taller; the corners and the top/bottom
    ornaments always keep their true shape. */
+
 .RsvpForm::before {
     content: "";
     position: absolute;

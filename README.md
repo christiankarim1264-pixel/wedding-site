@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Christian & Raakel's Wedding Website
 
-## Getting Started
+The website for our wedding on **January 23, 2027** at the Pioneer Living History Museum in Arizona. Guests can see photos, learn about the venue, find our registry, and RSVP online.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Home page:** a scrolling photo carousel and a live countdown to the wedding day
+- **RSVP:** a form inside a decorative vintage frame where guests can add everyone in their party; responses are saved to a Postgres database
+- **About the Venue:** details and photos of the Pioneer Living History Museum
+- **Registry:** a link to our Amazon wedding registry
+- **Mobile-friendly:** looks good on phones and desktops
+
+## Built With
+
+- [Next.js 16](https://nextjs.org) (App Router, Server Actions)
+- [React 19](https://react.dev) and TypeScript
+- [Tailwind CSS 4](https://tailwindcss.com), alongside plain CSS files for each component
+- [Neon](https://neon.tech) serverless Postgres for storing RSVPs
+- Google Fonts: EB Garamond and Monsieur La Doulaise
+
+## Project Structure
+
+```
+app/
+  page.tsx            Home page
+  RSVP/               RSVP page and thank-you page
+  About/              About the Venue page
+  registry/           Registry page
+  globals.css         Site-wide styles and color variables
+components/
+  Header/             Names, date, countdown, and navigation
+  Carousel/           Scrolling photo strip on the home page
+  RSVP/               RSVP form and the server action that saves it
+  About/              Venue cards and image gallery
+  Banner/             Dismissible banner at the top of the home page
+  Footer/
+public/pictures/      Photos and decorative artwork
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Add your connection string to a `.env.local` file as `POSTGRES_URL`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The RSVP form saves to two tables: one row in `rsvps` per form submission, and one row in `guests` for each person in the party.
 
-## Learn More
+```sql
+CREATE TABLE rsvps (
+  id SERIAL PRIMARY KEY,
+  phone TEXT NOT NULL,
+  attending BOOLEAN NOT NULL
+);
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+CREATE TABLE guests (
+  id SERIAL PRIMARY KEY,
+  rsvp_id INTEGER NOT NULL REFERENCES rsvps(id),
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL
+);
+```
