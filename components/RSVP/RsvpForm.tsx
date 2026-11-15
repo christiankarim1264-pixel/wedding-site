@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from "react";
+import { startTransition, useActionState, useState } from "react";
+import type { FormEvent } from "react";
 import { submitRsvp } from "./actions";
 import "./styles.css";
 
@@ -8,6 +9,17 @@ let nextGuestId = 1;
 
 export default function RsvpForm() {
   const [guestIds, setGuestIds] = useState([0]);
+  const [state, formAction, pending] = useActionState(submitRsvp, {});
+
+  /* Submitted through onSubmit rather than <form action> because React
+clears the form after an action, which would wipe what the guest typed
+when an RSVP is declined. */
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (pending) return;
+    const formData = new FormData(event.currentTarget);
+    startTransition(() => formAction(formData));
+  };
 
   const addGuest = () => {
     setGuestIds((ids) => [...ids, nextGuestId++]);
@@ -18,7 +30,7 @@ export default function RsvpForm() {
   };
 
   return (
-    <form className="RsvpForm" action={submitRsvp}>
+    <form className="RsvpForm" onSubmit={handleSubmit}>
       <h2 className="rsvpTitle">RS&nbsp;&nbsp;&nbsp;VP</h2>
       <p className="rsvpSubtext">
         Kindly respond by December 1st, 2026
@@ -117,8 +129,16 @@ export default function RsvpForm() {
         </div>
       </fieldset>
 
-      <button className="rsvpSubmit" type="submit">
-        Send RSVP
+      {state.error && (
+        <p className="rsvpError" role="alert">
+          {state.error}
+        </p>
+      )}
+
+      {/* Disabled while saving so impatient clicks (the database can take a
+      few seconds to wake up) don't send the RSVP again. */}
+      <button className="rsvpSubmit" type="submit" disabled={pending}>
+        {pending ? "Sending..." : "Send RSVP"}
       </button>
     </form>
   );

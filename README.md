@@ -47,13 +47,49 @@ The RSVP form saves to two tables: one row in `rsvps` per form submission, and o
 CREATE TABLE rsvps (
   id SERIAL PRIMARY KEY,
   phone TEXT NOT NULL,
-  attending BOOLEAN NOT NULL
+  attending BOOLEAN NOT NULL,
+  created_at TIMESTAMP DEFAULT now()
 );
 
 CREATE TABLE guests (
   id SERIAL PRIMARY KEY,
   rsvp_id INTEGER NOT NULL REFERENCES rsvps(id),
   first_name TEXT NOT NULL,
-  last_name TEXT NOT NULL
+  last_name TEXT NOT NULL,
+  phone TEXT NOT NULL -- copied from the guest's RSVP
 );
+
+-- Fill guests.phone from the RSVP when an insert leaves it out.
+CREATE FUNCTION guests_fill_phone() RETURNS trigger AS $$
+BEGIN
+  IF NEW.phone IS NULL THEN
+    SELECT phone INTO NEW.phone FROM rsvps WHERE id = NEW.rsvp_id;
+  END IF;
+  RETURN NEW;
+END $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER guests_fill_phone BEFORE INSERT ON guests
+  FOR EACH ROW EXECUTE FUNCTION guests_fill_phone();
+
+-- A phone number can RSVP several times (e.g. parents, then their kids),
+-- but the same name from the same phone number is declined.
+CREATE UNIQUE INDEX guests_phone_name_unique
+  ON guests (phone, lower(first_name), lower(last_name));
+```
+
+Different guests can share a name, so names are not deduplicated automatically. To find names that appear more than once (e.g. a partner who RSVP'd separately from their own phone), run `SELECT * FROM duplicate_guests;`. The view is defined as:
+
+```sql
+CREATE OR REPLACE VIEW duplicate_guests AS
+SELECT g.first_name, g.last_name, g.id AS guest_id,
+       r.id AS rsvp_id, r.phone, r.attending, r.created_at
+FROM guests g
+JOIN rsvps r ON r.id = g.rsvp_id
+WHERE (lower(g.first_name), lower(g.last_name)) IN (
+  SELECT lower(first_name), lower(last_name)
+  FROM guests
+  GROUP BY lower(first_name), lower(last_name)
+  HAVING count(*) > 1
+)
+ORDER BY lower(g.last_name), lower(g.first_name), r.created_at;
 ```
