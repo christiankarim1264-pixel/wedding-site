@@ -1,11 +1,13 @@
 const dressGuides = [
     {
         title: "Gentlemen",
+        wearHeading: "Please wear (at a minimum)",
         wear: ["Long sleeve button-up shirt", "Dress pants", "A belt", "Dress shoes"],
         avoid: ["Shorts", "Golf shirts"],
     },
     {
         title: "Ladies",
+        wearHeading: "Please wear",
         wear: ["Formal attire"],
         avoid: ["Light blue"],
     },
@@ -42,7 +44,7 @@ export default function DressCodeSection() {
                     >
                         <h2 className="text-[30px]">{guide.title}</h2>
 
-                        <h3 className="mt-5 mb-2 text-[14px] uppercase tracking-[0.12em] opacity-75">Please wear (at a minimum)</h3>
+                        <h3 className="mt-5 mb-2 text-[14px] uppercase tracking-[0.12em] opacity-75">{guide.wearHeading}</h3>
                         <ul className="space-y-1 text-[18px]">
                             {guide.wear.map((item) => (
                                 <li key={item}>{item}</li>
