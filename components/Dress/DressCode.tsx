@@ -9,7 +9,7 @@ const dressGuides = [
         title: "Ladies",
         wearHeading: "Please wear",
         wear: ["Formal attire"],
-        avoid: ["Light blue"],
+        avoid: [],
     },
 ];
 
@@ -51,12 +51,17 @@ export default function DressCodeSection() {
                             ))}
                         </ul>
 
-                        <h3 className="mt-6 mb-2 text-[14px] uppercase tracking-[0.12em] opacity-75">Please avoid</h3>
-                        <ul className="space-y-1 text-[18px] italic">
-                            {guide.avoid.map((item) => (
-                                <li key={item}>{item}</li>
-                            ))}
-                        </ul>
+                        {/* Only shown when there's something to avoid */}
+                        {guide.avoid.length > 0 && (
+                            <>
+                                <h3 className="mt-6 mb-2 text-[14px] uppercase tracking-[0.12em] opacity-75">Please avoid</h3>
+                                <ul className="space-y-1 text-[18px] italic">
+                                    {guide.avoid.map((item) => (
+                                        <li key={item}>{item}</li>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
                     </article>
                 ))}
             </div>
